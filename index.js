@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
+const dotenv = require ('dotenv');
+dotenv.config();
 app.use(express.json());
 
 // Import Models
@@ -9,7 +11,7 @@ const Product = require('./models/student');
 const Student = require('./models/student'); // Import Student Schema
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://sharuram2003:2GfCCjtzLpDEIQe1@cluster0.x2hzq.mongodb.net/Node_Training_APIs?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGO_CONNECTION_STRING)
   .then(() => console.log('Connected to MongoDB Successfully'))
   .catch((err) => console.log('Connection Failed', err));
 
